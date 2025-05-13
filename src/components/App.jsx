@@ -62,7 +62,6 @@ export class App extends Component {
 
 
   render() {
-    const {todos} = this.state
     // const visibleTodos = this.getVisibleTodos()
 
 
