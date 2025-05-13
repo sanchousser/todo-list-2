@@ -4,6 +4,9 @@ import initialToDos from '../todo.json'
 import { Container } from "./App.styled"
 import ToDoEditor from "./TodoEditor/TodoEditor"
 
+import { nanoid } from 'nanoid'
+import { Filter } from "./Filter/Filter"
+
 export class App extends Component {
 
   state = {
@@ -34,7 +37,7 @@ export class App extends Component {
 
   addTodo = (text) => {
     const todo = {
-      id: '',
+      id: nanoid(),
       text,
       completed: false,
     }
@@ -43,6 +46,18 @@ export class App extends Component {
       todos: [todo,...todos]
     }))
   }
+
+  changeFilter = (e) => {
+    this.setState({ filter: e.currentTarget.value });
+  }
+
+  getVisibleTodos = () => {
+    const normalizedFilter = this.state.filter.toLowerCase();
+
+    return this.state.todos.filter(todo => todo.text.toLowerCase().includes(normalizedFilter))
+  }
+
+  
 
 
 
@@ -58,7 +73,8 @@ export class App extends Component {
           <p>Completed: 0</p>
         </div>
         <ToDoEditor onSubmit={this.addTodo} />
-        <ToDoList todos={todos} ondeleteTodo={this.deleteTodo} onToggleCompleted={this.toggleCompleted} />
+        <Filter value={this.state.filter} onChange={this.changeFilter}/>
+        <ToDoList todos={this.getVisibleTodos()} ondeleteTodo={this.deleteTodo} onToggleCompleted={this.toggleCompleted}/>
       </Container>
     )
   };
