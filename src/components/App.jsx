@@ -1,6 +1,6 @@
 import { Component } from "react"
 import { ToDoList } from "./ToDoList/ToDoList"
-import initialToDos from '../todo.json'
+// import initialToDos from '../todo.json'
 import { Container } from "./App.styled"
 import ToDoEditor from "./TodoEditor/TodoEditor"
 
