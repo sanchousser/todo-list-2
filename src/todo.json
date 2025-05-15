@@ -13,40 +13,5 @@
     "id": "id-3",
     "text": "Пережити Redux",
     "completed": false
-  },
-  {
-    "id": "id-4",
-    "text": "Освоїти TypeScript з React",
-    "completed": true
-  },
-  {
-    "id": "id-5",
-    "text": "Написати тести з Jest",
-    "completed": false
-  },
-  {
-    "id": "id-6",
-    "text": "Зрозуміти React Hooks",
-    "completed": false
-  },
-  {
-    "id": "id-7",
-    "text": "Інтегрувати REST API",
-    "completed": false
-  },
-  {
-    "id": "id-8",
-    "text": "Створити власний хуків",
-    "completed": false
-  },
-  {
-    "id": "id-9",
-    "text": "Оптимізувати продуктивність додатку",
-    "completed": false
-  },
-  {
-    "id": "id-10",
-    "text": "Вивчити Context API",
-    "completed": false
   }
 ]

@@ -10,21 +10,36 @@ import { Filter } from "./Filter/Filter"
 export class App extends Component {
 
   state = {
-    todos: initialToDos,
+    todos: [],
     filter: '',
   }
+
+  componentDidMount() {
+    const todos = JSON.parse(localStorage.getItem('todos'))
+    if (todos) {
+      this.setState({ todos: todos })
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem('todos', JSON.stringify(this.state.todos))
+    }
+
+  }
+
 
   toggleCompleted = (todoId) => {
     this.setState(prevState => ({
       todos: prevState.todos.map(todo => {
-       if (todo.id === todoId) {
-        return {
-          ...todo, 
-          completed: !todo.completed
+        if (todo.id === todoId) {
+          return {
+            ...todo,
+            completed: !todo.completed
+          }
         }
-      } 
-      return todo;
-      
+        return todo;
+
       })
     }))
   };
@@ -42,8 +57,8 @@ export class App extends Component {
       completed: false,
     }
 
-    this.setState(({todos}) => ({
-      todos: [todo,...todos]
+    this.setState(({ todos }) => ({
+      todos: [todo, ...todos]
     }))
   }
 
@@ -57,7 +72,7 @@ export class App extends Component {
     return this.state.todos.filter(todo => todo.text.toLowerCase().includes(normalizedFilter))
   }
 
-  
+
 
 
 
@@ -72,8 +87,8 @@ export class App extends Component {
           <p>Completed: 0</p>
         </div>
         <ToDoEditor onSubmit={this.addTodo} />
-        <Filter value={this.state.filter} onChange={this.changeFilter}/>
-        <ToDoList todos={this.getVisibleTodos()} ondeleteTodo={this.deleteTodo} onToggleCompleted={this.toggleCompleted}/>
+        <Filter value={this.state.filter} onChange={this.changeFilter} />
+        <ToDoList todos={this.getVisibleTodos()} ondeleteTodo={this.deleteTodo} onToggleCompleted={this.toggleCompleted} />
       </Container>
     )
   };
